@@ -13,6 +13,7 @@ public class MagicianScript : MonoBehaviour
   private Vector2 movement;
   private Rigidbody2D rigidbodyComponent;
   private BoxCollider2D colliderComponent;
+  private WeaponScript weaponComponent;
   public int jumpForce = 7;
   public int playerId = 1;
   public LayerMask groundLayers;
@@ -22,6 +23,7 @@ public class MagicianScript : MonoBehaviour
     // 5 - Get the component and store the reference
     rigidbodyComponent = GetComponent<Rigidbody2D>();
     colliderComponent = GetComponent<BoxCollider2D>();
+    weaponComponent = GetComponent<WeaponScript>();
   }
   void Update()
   {
@@ -33,6 +35,8 @@ public class MagicianScript : MonoBehaviour
         this.MoveRight();
       if (Input.GetKey(KeyCode.Q))
         this.MoveLeft();
+      if (Input.GetButtonDown("Fire1"))
+        this.Shoot();
     }
     else if (playerId == 2)
     {
@@ -42,21 +46,8 @@ public class MagicianScript : MonoBehaviour
         this.MoveRight();
       if (Input.GetKey(KeyCode.UpArrow))
         this.Jump();
-    }
-
-    // 5 - Shooting
-    bool shoot = Input.GetButtonDown("Fire1");
-    shoot |= Input.GetButtonDown("Fire2");
-    // Careful: For Mac users, ctrl + arrow is a bad idea
-
-    if (shoot)
-    {
-      WeaponScript weapon = GetComponent<WeaponScript>();
-      if (weapon != null)
-      {
-        // false because the player is not an enemy
-        weapon.Attack(false);
-      }
+      if (Input.GetButtonDown("Fire2"))
+        this.Shoot();
     }
 
     var dist = (transform.position - Camera.main.transform.position).z;
@@ -82,6 +73,11 @@ public class MagicianScript : MonoBehaviour
       Mathf.Clamp(transform.position.y, topBorder, bottomBorder),
       transform.position.z
     );
+  }
+
+  void Shoot()
+  {
+    weaponComponent.Attack(false);
   }
 
   void Jump()
