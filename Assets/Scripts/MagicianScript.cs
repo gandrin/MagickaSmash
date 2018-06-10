@@ -25,7 +25,6 @@ public class MagicianScript : MonoBehaviour
   }
   void Update()
   {
-
     if (playerId == 1) {
       if(Input.GetKey(KeyCode.Z))
           this.Jump();
@@ -41,6 +40,21 @@ public class MagicianScript : MonoBehaviour
       if(Input.GetKey (KeyCode.UpArrow))
           this.Jump();
     }
+
+    // 5 - Shooting
+    bool shoot = Input.GetButtonDown("Fire1");
+    shoot |= Input.GetButtonDown("Fire2");
+    // Careful: For Mac users, ctrl + arrow is a bad idea
+
+    if (shoot)
+    {
+      WeaponScript weapon = GetComponent<WeaponScript>();
+      if (weapon != null)
+      {
+        // false because the player is not an enemy
+        weapon.Attack(false);
+      }
+    }    
   }
 
   void Jump()
