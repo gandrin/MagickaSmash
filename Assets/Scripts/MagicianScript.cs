@@ -51,14 +51,14 @@ public class MagicianScript : MonoBehaviour
   void MoveLeft()
   {
     rigidbodyComponent.velocity = new Vector2(
-      -speed.x, 0
+      speed.x, 0
     );
   }
 
   void MoveRight()
   {
     rigidbodyComponent.velocity = new Vector2(
-      speed.x, 0
+      -speed.x, 0
     );
   }
 
