@@ -16,6 +16,7 @@ public class MagicianScript : MonoBehaviour
   private WeaponScript weaponComponent;
   public int jumpForce = 7;
   public int playerId = 1;
+  bool isJumping = false;
   public LayerMask groundLayers;
 
   void Start()
@@ -50,6 +51,10 @@ public class MagicianScript : MonoBehaviour
         this.Shoot();
     }
 
+    // Jumping
+    if(rigidbodyComponent.velocity.y == 0)
+      this.isJumping = false;
+
     var dist = (transform.position - Camera.main.transform.position).z;
 
     var leftBorder = Camera.main.ViewportToWorldPoint(
@@ -82,7 +87,14 @@ public class MagicianScript : MonoBehaviour
 
   void Jump()
   {
-    rigidbodyComponent.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    if(IsGrounded() && !this.isJumping){
+      rigidbodyComponent.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+      this.isJumping = true;
+    }
+  }
+
+  bool IsGrounded(){
+    return rigidbodyComponent.IsTouchingLayers(groundLayers);
   }
 
   void MoveLeft()
@@ -103,14 +115,5 @@ public class MagicianScript : MonoBehaviour
   {
     // 6 - Move the game object
   }
-  // bool IsGrounded()
-  // {
-  //   return Physics.CheckBox(
-  //     colliderComponent.bounds.center,
-  //     new Vector2(colliderComponent.bounds.center.x, colliderComponent.bounds.min.y),
-  //     colliderComponent.size.y * 9f,
-  //     groundLayers
-  //   );
-  // }
 }
 
