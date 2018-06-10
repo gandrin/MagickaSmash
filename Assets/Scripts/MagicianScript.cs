@@ -25,6 +25,21 @@ public class MagicianScript : MonoBehaviour
   }
   void Update()
   {
+<<<<<<< HEAD
+=======
+    // 3 - Retrieve axis information
+    float inputX = Input.GetAxis("Horizontal");
+    float inputY = Input.GetAxis("Vertical");
+
+    // 4 - Movement per direction
+    movement = new Vector2(
+      speed.x * inputX,
+      speed.y * inputY
+    );
+
+ 
+    rigidbodyComponent.velocity = movement;
+>>>>>>> add shot behaviour
 
     if (playerId == 1) {
       if(Input.GetKey(KeyCode.Z))
@@ -41,6 +56,21 @@ public class MagicianScript : MonoBehaviour
       if(Input.GetKey (KeyCode.UpArrow))
           this.Jump();
     }
+
+    // 5 - Shooting
+    bool shoot = Input.GetButtonDown("Fire1");
+    shoot |= Input.GetButtonDown("Fire2");
+    // Careful: For Mac users, ctrl + arrow is a bad idea
+
+    if (shoot)
+    {
+      WeaponScript weapon = GetComponent<WeaponScript>();
+      if (weapon != null)
+      {
+        // false because the player is not an enemy
+        weapon.Attack(false);
+      }
+    }    
   }
 
   void Jump()
