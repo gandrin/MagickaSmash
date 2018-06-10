@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Magician
+    uniqueID: 1898140209
+    locked: 0
+  - name: Platform
+    uniqueID: 3462615107
     locked: 0
