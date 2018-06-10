@@ -379,7 +379,7 @@ Prefab:
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
       propertyPath: jumpForce
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
@@ -404,7 +404,7 @@ Prefab:
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
       propertyPath: speed.x
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1974357368367082, guid: 517cc00de0aac4b78aa21ea3e924dd8c, type: 2}
       propertyPath: m_Name
@@ -418,7 +418,11 @@ Prefab:
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
       propertyPath: speed.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974357368367082, guid: 517cc00de0aac4b78aa21ea3e924dd8c, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 517cc00de0aac4b78aa21ea3e924dd8c, type: 2}
@@ -909,7 +913,7 @@ Prefab:
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
       propertyPath: jumpForce
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
@@ -934,7 +938,7 @@ Prefab:
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
       propertyPath: speed.x
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1974357368367082, guid: 517cc00de0aac4b78aa21ea3e924dd8c, type: 2}
       propertyPath: m_Name
@@ -943,6 +947,20 @@ Prefab:
     - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
         type: 2}
       propertyPath: speed.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974357368367082, guid: 517cc00de0aac4b78aa21ea3e924dd8c, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114279513250805182, guid: 517cc00de0aac4b78aa21ea3e924dd8c,
+        type: 2}
+      propertyPath: playerId
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
