@@ -41,9 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Magician
-    uniqueID: 1898140209
+  - name: Background
+    uniqueID: 3091601895
+    locked: 0
+  - name: Middleground
+    uniqueID: 4079238923
+    locked: 0
+  - name: Foreground
+    uniqueID: 2758864335
     locked: 0
   - name: Platform
     uniqueID: 3462615107
+    locked: 0
+  - name: Magician
+    uniqueID: 1898140209
     locked: 0
