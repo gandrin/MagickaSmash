@@ -45,7 +45,7 @@ public class WeaponScript : MonoBehaviour
   /// <summary>
   /// Create a new projectile if possible
   /// </summary>
-  public void Attack(bool isEnemy)
+  public void Attack(int shooterId, bool facingRight)
   {
     if (CanAttack)
     {
@@ -53,6 +53,9 @@ public class WeaponScript : MonoBehaviour
 
       // Create a new shot
       var shotTransform = Instantiate(shotPrefab) as Transform;
+      
+      // if(!facingRight)
+      //   shotTransform.spriteRenderer.flipY = true;
 
       // Assign position
       shotTransform.position = transform.position;
@@ -61,7 +64,11 @@ public class WeaponScript : MonoBehaviour
       ShotScript shot = shotTransform.gameObject.GetComponent<ShotScript>();
       if (shot != null)
       {
-        shot.isEnemyShot = isEnemy;
+        shot.shooterId = shooterId;
+      }
+      if (!facingRight)
+      {
+        shot.Flip();
       }
 
       // Make the weapon shot always towards it

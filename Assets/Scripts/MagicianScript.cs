@@ -14,10 +14,13 @@ public class MagicianScript : MonoBehaviour
   private Rigidbody2D rigidbodyComponent;
   private BoxCollider2D colliderComponent;
   private WeaponScript weaponComponent;
+  private HealthScript healthComponent;
   public int jumpForce = 7;
   public int playerId = 1;
   bool isJumping = false;
+  private bool facingRight = true;
   public LayerMask groundLayers;
+  public SpriteRenderer[] spriteRenderers;
 
   void Start()
   {
@@ -25,6 +28,10 @@ public class MagicianScript : MonoBehaviour
     rigidbodyComponent = GetComponent<Rigidbody2D>();
     colliderComponent = GetComponent<BoxCollider2D>();
     weaponComponent = GetComponent<WeaponScript>();
+    healthComponent = GetComponent<HealthScript>();
+    spriteRenderers = GetComponentsInChildren<SpriteRenderer>(); 
+
+    healthComponent.playerId = playerId;
   }
   void Update()
   {
@@ -82,7 +89,7 @@ public class MagicianScript : MonoBehaviour
 
   void Shoot()
   {
-    weaponComponent.Attack(false);
+    weaponComponent.Attack(playerId, facingRight);
   }
 
   void Jump()
@@ -102,6 +109,9 @@ public class MagicianScript : MonoBehaviour
     rigidbodyComponent.velocity = new Vector2(
       -speed.x, 0
     );
+    if(facingRight)
+      transform.localRotation = Quaternion.Euler( 0, 180, 0);
+    facingRight = false;
   }
 
   void MoveRight()
@@ -109,6 +119,14 @@ public class MagicianScript : MonoBehaviour
     rigidbodyComponent.velocity = new Vector2(
       speed.x, 0
     );
+    if(!facingRight)
+      transform.localRotation = Quaternion.Euler( 0, 0, 0);
+    facingRight = true;
+  }
+
+  void Turn()
+  {
+    transform.localRotation = Quaternion.Euler( 0, 180, 0);
   }
 
   void FixedUpdate()
