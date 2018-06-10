@@ -37,6 +37,12 @@ public class MagicianScript : MonoBehaviour
         this.MoveLeft();
       if (Input.GetButtonDown("Fire1"))
         this.Shoot();
+      if (Input.GetButtonDown("Choose Fire Player 1"))
+        weaponComponent.shotPrefab = Resources.Load(;
+      if (Input.GetButtonDown("Choose Water Player 1"))
+        weaponComponent.shotPrefab = GetComponent<EarthShot>();
+      if (Input.GetButtonDown("Choose Earth Player 1"))
+        this.Shoot();
     }
     else if (playerId == 2)
     {
@@ -47,6 +53,12 @@ public class MagicianScript : MonoBehaviour
       if (Input.GetKey(KeyCode.UpArrow))
         this.Jump();
       if (Input.GetButtonDown("Fire2"))
+        this.Shoot();
+      if (Input.GetButtonDown("Choose Fire Player 2"))
+        this.Shoot();
+      if (Input.GetButtonDown("Choose Water Player 2"))
+        this.Shoot();
+      if (Input.GetButtonDown("Choose Earth Player 2"))
         this.Shoot();
     }
 
