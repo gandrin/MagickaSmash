@@ -14,6 +14,7 @@ public class MagicianScript : MonoBehaviour
   private Rigidbody2D rigidbodyComponent;
   private BoxCollider2D colliderComponent;
   public int jumpForce = 7;
+  public int playerId = 1;
   public LayerMask groundLayers;
 
   void Start()
@@ -24,22 +25,41 @@ public class MagicianScript : MonoBehaviour
   }
   void Update()
   {
-    // 3 - Retrieve axis information
-    float inputX = Input.GetAxis("Horizontal");
-    float inputY = Input.GetAxis("Vertical");
 
-    // 4 - Movement per direction
-    movement = new Vector2(
-      speed.x * inputX,
-      speed.y * inputY
-    );
-
-    rigidbodyComponent.velocity = movement;
-
-    if (Input.GetKeyDown(KeyCode.Space) /*&& IsGrounded()*/)
-    {
-      rigidbodyComponent.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    if (playerId == 1) {
+      if(Input.GetKey(KeyCode.Z))
+          this.Jump();
+      if(Input.GetKey(KeyCode.D))
+          this.MoveRight();
+      if(Input.GetKey (KeyCode.Q))
+          this.MoveLeft();
+    } else if (playerId == 2) {
+      if(Input.GetKey(KeyCode.LeftArrow))
+          this.MoveLeft();
+      if(Input.GetKey(KeyCode.RightArrow))
+          this.MoveRight();
+      if(Input.GetKey (KeyCode.UpArrow))
+          this.Jump();
     }
+  }
+
+  void Jump()
+  {
+    rigidbodyComponent.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+  }
+
+  void MoveLeft()
+  {
+    rigidbodyComponent.velocity = new Vector2(
+      -speed.x, 0
+    );
+  }
+
+  void MoveRight()
+  {
+    rigidbodyComponent.velocity = new Vector2(
+      speed.x, 0
+    );
   }
 
   void FixedUpdate()
