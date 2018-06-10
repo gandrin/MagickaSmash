@@ -13,7 +13,7 @@ public class HealthScript : MonoBehaviour
   /// <summary>
   /// Enemy or player?
   /// </summary>
-  public bool isEnemy = true;
+  public int playerId;
 
   /// <summary>
   /// Inflicts damage and check if the object should be destroyed
@@ -37,7 +37,7 @@ public class HealthScript : MonoBehaviour
     if (shot != null)
     {
       // Avoid friendly fire
-      if (shot.isEnemyShot != isEnemy)
+      if (shot.shooterId != playerId)
       {
         Damage(shot.damage);
 
