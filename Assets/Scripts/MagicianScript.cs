@@ -25,20 +25,23 @@ public class MagicianScript : MonoBehaviour
   }
   void Update()
   {
-    if (playerId == 1) {
-      if(Input.GetKey(KeyCode.Z))
-          this.Jump();
-      if(Input.GetKey(KeyCode.D))
-          this.MoveRight();
-      if(Input.GetKey (KeyCode.Q))
-          this.MoveLeft();
-    } else if (playerId == 2) {
-      if(Input.GetKey(KeyCode.LeftArrow))
-          this.MoveLeft();
-      if(Input.GetKey(KeyCode.RightArrow))
-          this.MoveRight();
-      if(Input.GetKey (KeyCode.UpArrow))
-          this.Jump();
+    if (playerId == 1)
+    {
+      if (Input.GetKey(KeyCode.Z))
+        this.Jump();
+      if (Input.GetKey(KeyCode.D))
+        this.MoveRight();
+      if (Input.GetKey(KeyCode.Q))
+        this.MoveLeft();
+    }
+    else if (playerId == 2)
+    {
+      if (Input.GetKey(KeyCode.LeftArrow))
+        this.MoveLeft();
+      if (Input.GetKey(KeyCode.RightArrow))
+        this.MoveRight();
+      if (Input.GetKey(KeyCode.UpArrow))
+        this.Jump();
     }
 
     // 5 - Shooting
@@ -54,7 +57,31 @@ public class MagicianScript : MonoBehaviour
         // false because the player is not an enemy
         weapon.Attack(false);
       }
-    }    
+    }
+
+    var dist = (transform.position - Camera.main.transform.position).z;
+
+    var leftBorder = Camera.main.ViewportToWorldPoint(
+      new Vector3(0, 0, dist)
+    ).x;
+
+    var rightBorder = Camera.main.ViewportToWorldPoint(
+      new Vector3(1, 0, dist)
+    ).x;
+
+    var topBorder = Camera.main.ViewportToWorldPoint(
+      new Vector3(0, 0, dist)
+    ).y;
+
+    var bottomBorder = Camera.main.ViewportToWorldPoint(
+      new Vector3(0, 1, dist)
+    ).y;
+
+    transform.position = new Vector3(
+      Mathf.Clamp(transform.position.x, leftBorder, rightBorder),
+      Mathf.Clamp(transform.position.y, topBorder, bottomBorder),
+      transform.position.z
+    );
   }
 
   void Jump()
