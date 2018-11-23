@@ -107,7 +107,7 @@ public class MagicianScript : MonoBehaviour
   void MoveLeft()
   {
     rigidbodyComponent.velocity = new Vector2(
-      -speed.x, 0
+      speed.x, 0
     );
     if(facingRight)
       transform.localRotation = Quaternion.Euler( 0, 180, 0);
@@ -117,7 +117,7 @@ public class MagicianScript : MonoBehaviour
   void MoveRight()
   {
     rigidbodyComponent.velocity = new Vector2(
-      speed.x, 0
+      -speed.x, 0
     );
     if(!facingRight)
       transform.localRotation = Quaternion.Euler( 0, 0, 0);
